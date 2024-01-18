@@ -101,7 +101,7 @@ function App() {
             top: 0,
             left: 0,
             right: 0,
-            padding: 10,
+            padding: alarmList.length ? 10 : 0,
             backgroundColor: "black",
           }}
         >
