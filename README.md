@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# Smart Clock
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+This project is a web application built with TypeScript and React. It displays a simple clock with the ability to set and remove alarms.
+The backend part has been built Node ans SQlite.
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+To install and run this project locally, follow these steps:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone the repository to your local machine.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+git clone <repository-url>
+```
 
-### `npm test`
+2. Navigate to the project directory.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+cd smart-clock
+```
 
-### `npm run build`
+3. Install the dependencies using npm.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm i && cd ./client && npm i && cd ..
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Install the ts-node-esm package globally.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm install -g ts-node-esm
+```
 
-### `npm run eject`
+## Launching the Project
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+To launch the project, run the following command:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## About this project
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+This project has been built following the MVC pattern.
+At the backend level we have a server opened on port 3001 by default. In the future this port might be configurable. All requests incoming are passed to the router which redirect them to the right controller.
+Each controller communicate with the model related to, to store/delete data in the database.
+Once the database modified, the controller returns a response to the client in json format.
 
-## Learn More
+At the frontend level, the app runs on port 3000 by default. A proxy has been setup in `package.json` to avoid CORS policy during the development. Once started the app triggers a GET request to the api to get the list of alarms. If alarms exist, they'll be displayed at the top left of the view. A delete button will be displayed at the top right as well to delete the alarm.
+The clock is displayed at the middle of the screen and an alarm can be set pressing set button which displays a modal. Here we can set a name and choose when the alarm will ring. If no name are provided, the default one "Alarm" will be applied. We cannot set an alarm in the past. Once set button pressed, a POST request will be triggered to save the alarm in the database.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Some improvements can be done in the future:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- The design is as simple as possible. We can do better.
+- If we set too many alarms, at some point they will pass over the clock. We can handle this case by adding a scrollview for instance and limit the height of this scrollview.
+- We can add toast messages to notify the user if requests succeed or fail.
+- We can add a sound once the alarm time is reached.
+- We can make it more responsive.
+- And so on so far...
