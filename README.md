@@ -58,4 +58,6 @@ Some improvements can be done in the future:
 - We can add toast messages to notify the user if requests succeed or fail.
 - We can add a sound once the alarm time is reached.
 - We can make it more responsive.
+- At the get alarms controller level, check if the database has been created before responding something.
+- Add a 404 page.
 - And so on so far...
